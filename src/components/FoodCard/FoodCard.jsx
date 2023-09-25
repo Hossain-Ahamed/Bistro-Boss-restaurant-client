@@ -4,6 +4,7 @@ import { AuthContext } from '../../ContextProvider/AuthProvider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import useCart from '../../hooks/useCart';
 
 const FoodCard = ({ item }) => {
     const { _id, name, image, price, recipe } = item;
@@ -12,8 +13,9 @@ const FoodCard = ({ item }) => {
     const location = useLocation();
 
     const { user } = useContext(AuthContext);
+    const [,,refetchCartToUpdateCart] = useCart();
     const handleAddToCart = item => {
-        console.log(item);
+        // console.log(item);
 
 
         if (!user) {
@@ -49,7 +51,9 @@ const FoodCard = ({ item }) => {
                 withCredentials: true
             })
                 .then(data => {
+                    refetchCartToUpdateCart();
                     toast.success('Successfully added');
+                    
                 })
                 .catch(e => console.error(e));
         }

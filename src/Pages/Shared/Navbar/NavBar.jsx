@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import { PiShoppingCartFill } from 'react-icons/pi'
+import useCart from '../../../hooks/useCart';
 
 const NavBar = () => {
 
   const { user, provideSignOut } = useAuth();
+  const [cart] = useCart();
 
   const logout = () => {
     provideSignOut()
@@ -17,10 +19,10 @@ const NavBar = () => {
     <li><Link to='/menu'>Our Menu</Link></li>
     <li><Link to='/order'>Order Food</Link></li>
     <li>
-      <Link to='/cart'>
+      <Link to='dashboard/my-cart'>
         <button className="btn bg-transparent border-0 outline-none ring-0 hover:bg-transparent">
           <PiShoppingCartFill className='text-xl' />
-          <div className="badge">+99</div>
+          <div className="badge">{cart?.length && cart.length || 0}</div>
         </button>
       </Link>
     </li>

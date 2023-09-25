@@ -25,3 +25,10 @@ button{
     -webkit-tap-highlight-color: transparent!important;
 }
 
+.select-none{
+  user-select: none;
+}
+
+#default-sidebar a.active{
+ background: rgb(192, 186, 186);
+}

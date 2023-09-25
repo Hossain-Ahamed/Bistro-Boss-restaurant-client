@@ -3,9 +3,9 @@ export default {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  daisyui: {
-    themes: ["light"],
-  },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: false,
+  }
 }
 
