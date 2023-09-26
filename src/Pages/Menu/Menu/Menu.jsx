@@ -10,6 +10,7 @@ import soupImg from '../../../assets/menu/soup-bg.jpg';
 import useMenu from '../../../hooks/useMenu';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuCategory from '../MenuCategory/MenuCategory';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const Menu = () => {
     const [menu] = useMenu();
@@ -51,7 +52,7 @@ const Menu = () => {
 
             <MenuCategory  img={soupImg} items={soup}  title="Salads" msg="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."  />
 
-
+<ScrollToTop/>
         </>
     );
 };

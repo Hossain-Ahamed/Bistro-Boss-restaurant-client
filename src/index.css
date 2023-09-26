@@ -20,9 +20,10 @@ body{
     margin-top: 1.5rem;
 }
 
-button{
- 
-    -webkit-tap-highlight-color: transparent!important;
+button, li, div, a {
+
+    -webkit-tap-highlight-color: transparent;
+    
 }
 
 .select-none{

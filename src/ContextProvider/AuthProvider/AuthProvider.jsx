@@ -1,13 +1,17 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { app } from '../../Firebase/firebase.config';
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const auth = getAuth();
     const googleAuthprovider = new GoogleAuthProvider();
+    const facebookAuthProvider = new FacebookAuthProvider();
+    const githubAuthProvider = new GithubAuthProvider();
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -26,9 +30,20 @@ const AuthProvider = ({ children }) => {
 
 
 
-    const provideSignInWithGoogle = (email, password) => {
+    const provideSignInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleAuthprovider);
+    }
+
+
+    const provideSignInWithFaceBook = () => {
+        setLoading(true);
+        return signInWithPopup(auth, facebookAuthProvider);
+    }
+
+    const provideSignInWithGitHub = () => {
+        setLoading(true);
+        return signInWithPopup(auth, githubAuthProvider);
     }
 
 
@@ -38,10 +53,10 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    const providerUpdateuserProfile = (name,photo)=>{
-       return updateProfile(auth.currentUser, {
+    const providerUpdateuserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-          })
+        })
     }
 
 
@@ -50,6 +65,19 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             console.log('current user cred : ', currentUser);
             setLoading(false);
+            if (currentUser) {
+                // const user
+                axios.post(`${import.meta.env.VITE_SERVER_ADDRESS}/jwt`, { email: currentUser?.email }, {withCredentials:true})
+                    .then(data => {
+                        // console.log(data.data.token);
+                        localStorage.setItem('access-token',data.data.token);
+                        Cookies.set('access-token', data.data.token, {expires : 1})
+                    })
+                    .catch(e => { console.error(e) })
+            }else{
+                localStorage.removeItem('access-token');
+                Cookies.remove('access-token');
+            }
         });
 
         return () => {
@@ -67,14 +95,16 @@ const AuthProvider = ({ children }) => {
         provideCreateUserWithEmailAndPassword,
         provideSignInWithEmailAndPassword,
         provideSignInWithGoogle,
+        provideSignInWithGitHub,
+        provideSignInWithFaceBook,
         providerUpdateuserProfile,
         provideSignOut,
 
     }
 
-    if(loading){
+    if (loading) {
         return <>
-        <p>loading</p></>
+            <p>loading</p></>
     }
     return (
         <AuthContext.Provider value={authInfo}>

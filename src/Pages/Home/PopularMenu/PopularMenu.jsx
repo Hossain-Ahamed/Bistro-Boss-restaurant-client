@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuItemCard from '../../Shared/MenuItemCard/MenuItemCard';
 import useMenu from '../../../hooks/useMenu';
+import { Link } from 'react-router-dom';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const PopularMenu = () => {
 
@@ -26,11 +28,11 @@ const PopularMenu = () => {
             </div>
 
 
-            <button className='btn btn-outline border-0 border-b-4 mt-4'>
+            <Link to='/menu' className='btn btn-outline border-0 border-b-4 mt-4'>
                 Visit Our Menu
-            </button>
+            </Link>
 
-
+            <ScrollToTop />
         </section>
     );
 };

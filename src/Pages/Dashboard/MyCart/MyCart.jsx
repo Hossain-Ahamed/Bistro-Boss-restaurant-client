@@ -2,11 +2,38 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import useCart from '../../../hooks/useCart';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const MyCart = () => {
-    const [cart] = useCart();
-    console.log(cart)
-    const total = cart.reduce((sum, item) => item?.price + sum, 0)
+    const [cart,,refetchCartToUpdateCart] = useCart();
+    // console.log(cart)
+    const total = cart.reduce((sum, item) => item?.price + sum, 0);
+
+    const handleDelete = _id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`${import.meta.env.VITE_SERVER_ADDRESS}/carts/${_id}`)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data?.deletedCount > 0) {
+                            toast.success('Deleted');
+                            refetchCartToUpdateCart();
+                        }
+                    }).catch(e=>console.error(e))
+            }
+        })
+    }
     return (
         <>
             <Helmet>
@@ -28,7 +55,7 @@ const MyCart = () => {
                         <button className='uppercase font-medium text-base text-white max-w-fit bg-[#D1A054] border-0 p-2 rounded'>Pay</button>
                     </div>
                 </div>
-                
+
                 {/* table  */}
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
 
@@ -67,11 +94,11 @@ const MyCart = () => {
                                     <td className="px-6 py-4">
                                         {i?.name}
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 ">
                                         ${i?.price}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <button>
+                                        <button onClick={() => handleDelete(i?._id)}>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="red" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                 <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="red" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -92,6 +119,7 @@ const MyCart = () => {
 
 
             </section>
+            <ScrollToTop/>
         </>
     );
 };

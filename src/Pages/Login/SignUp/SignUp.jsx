@@ -7,6 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import OtherSignUpMethod from '../OtherSignUpMethod/OtherSignUpMethod';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
+import { axiosUploadProfileDataToServer } from '../../../assets/Functions/functionalities';
 const SignUp = () => {
 
     const {
@@ -18,13 +20,13 @@ const SignUp = () => {
     } = useForm();
     const navigate = useNavigate();
 
-    const { provideCreateUserWithEmailAndPassword, providerUpdateuserProfile } = useContext(AuthContext);
+    const { provideCreateUserWithEmailAndPassword, providerUpdateuserProfile,setLoading } = useContext(AuthContext);
 
 
 
     const onSubmit = (data) => {
         event.preventDefault();
-        console.log(data)
+        // console.log(data)
         if (!data?.name || !data?.password || !data?.email) {
             alert('Provide Info');
         }
@@ -34,10 +36,25 @@ const SignUp = () => {
                 const user = result.user;
                 providerUpdateuserProfile(data?.name, data?.photo)
                     .then(() => {
-                        console.log(user);
-                        reset();
-                        navigate('/')
+                        // console.log(user);
+
+                        const saveduser = {
+                            name: data?.name,
+                            email: data?.email,
+                            photoURL: data?.photo,
+                            firebase_UID: user?.uid,
+                            role: 'user'
+
+                        }
+                        axiosUploadProfileDataToServer(saveduser)
+                            .then(data => {
+                                // console.log(data.data);
+                                reset();
+                                navigate('/')
+                            })
+                            .catch(e => console.error(e))
                     }).catch(e => console.error(e))
+                    .finally(()=>{setLoading(false)})
             })
     }
 

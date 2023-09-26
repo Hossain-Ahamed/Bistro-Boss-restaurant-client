@@ -8,8 +8,9 @@ import SignUp from "../Pages/Login/SignUp/SignUp";
 import PreventLogin from "../RouteBlocker/PreventLogin/PreventLogin";
 import PrivateRoute from "../RouteBlocker/PrivateRoute/PrivateRoute";
 import Profile from "../Pages/UserFunctions/Profile/Profile";
-import Dashboard from "../Layout/Dashboard";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
+import Dashboard from "../Layout/Dashboard/Dashboard";
+import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -49,11 +50,15 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard/></PrivateRoute>,
         children: [
             {
                 path: 'my-cart',
                 element: <MyCart />
+            },
+            {
+                path: 'users',
+                element: <AllUsers />
             }
         ]
 

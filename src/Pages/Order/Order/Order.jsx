@@ -8,15 +8,16 @@ import useMenu from '../../../hooks/useMenu';
 import OrderTab from '../OrderTab/OrderTab';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 
 const Order = () => {
 
-    const categories = ['salads','pizza','soup','desserts','drinks'];
-    const {category} = useParams();
+    const categories = ['salads', 'pizza', 'soup', 'desserts', 'drinks'];
+    const { category } = useParams();
 
-    let initialIndex=0;
-    if(category && categories.indexOf(category)!==-1){
+    let initialIndex = 0;
+    if (category && categories.indexOf(category) !== -1) {
         initialIndex = categories.indexOf(category)
     }
 
@@ -52,14 +53,14 @@ const Order = () => {
                     <Tab>Dessert</Tab>
                     <Tab>Drinks</Tab>
                 </TabList>
-                <TabPanel><OrderTab items={salad}/></TabPanel>
-                <TabPanel><OrderTab items={pizza}/></TabPanel>
-                <TabPanel><OrderTab items={soup}/></TabPanel>
-                <TabPanel><OrderTab items={dessert}/></TabPanel>
-                <TabPanel><OrderTab items={drinks}/></TabPanel>
-               
-            </Tabs>
+                <TabPanel><OrderTab items={salad} /></TabPanel>
+                <TabPanel><OrderTab items={pizza} /></TabPanel>
+                <TabPanel><OrderTab items={soup} /></TabPanel>
+                <TabPanel><OrderTab items={dessert} /></TabPanel>
+                <TabPanel><OrderTab items={drinks} /></TabPanel>
 
+            </Tabs>
+            <ScrollToTop />
         </div>
     );
 };

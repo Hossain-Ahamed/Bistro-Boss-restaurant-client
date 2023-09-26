@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 const Login = () => {
    
 
-    const { provideSignInWithEmailAndPassword } = useContext(AuthContext);
+    const { provideSignInWithEmailAndPassword ,setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -50,7 +50,8 @@ const Login = () => {
                     timer: 1500
                 })
                 navigate(from,{replace:true});
-            })
+            }).catch(e=>{})
+            .finally(()=>{setLoading(false)})
     }
 
 

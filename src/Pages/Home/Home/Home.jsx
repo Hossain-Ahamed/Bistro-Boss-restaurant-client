@@ -4,6 +4,7 @@ import Catagory from "../Category/Catagory";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 import Testimonials from "../Testimoials/Testimonials";
+import ScrollToTop from "../../../components/ScrollToTop/ScrollToTop";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
             <PopularMenu/>
             <Featured/>
             <Testimonials/>
+            <ScrollToTop/>
         </>
     );
 };

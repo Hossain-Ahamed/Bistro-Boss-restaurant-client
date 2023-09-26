@@ -2,7 +2,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer/Footer';
 import NavBar from '../Pages/Shared/Navbar/NavBar';
-import { Toaster } from 'react-hot-toast';
+
 import ToasterProvider from '../components/Toaster/ToasterProvider';
 
 const Main = () => {
