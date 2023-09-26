@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useGeoLocation from "../../../hooks/useGeoLocation";
+import iconImage from '../../../assets/logo.png'
 
 
 const Footer = () => {
@@ -12,7 +13,7 @@ const Footer = () => {
         <>
             <footer className="footer p-10 bg-neutral text-neutral-content">
                 <div>
-                   <img src={'../../../assets/logo.png'} alt="" />
+                   <img src={iconImage} alt="" />
                     <p>Bistro restaurant Ltd.<br />Providing reliable tech since 1992</p>
                 </div>
                 <div>

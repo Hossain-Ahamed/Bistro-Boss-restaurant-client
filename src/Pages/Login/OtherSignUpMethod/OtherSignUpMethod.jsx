@@ -15,19 +15,19 @@ const OtherSignUpMethod = () => {
             .then(result => {
                 postSignInFunctions(result?.user);
 
-            }).catch(e => { setLoading(false) })
+            }).catch(e => {  })
     }
     const handleFaceBookLogin = () => {
         provideSignInWithFaceBook()
             .then(result => {
                 postSignInFunctions(result?.user);
-            }).catch(e => { setLoading(false) })
+            }).catch(e => {  })
     }
     const handleGitHubLogin = () => {
         provideSignInWithGitHub()
             .then(result => {
                 postSignInFunctions(result?.user);
-            }).catch(e => { setLoading(false) })
+            }).catch(e => {  })
     }
 
     const postSignInFunctions = (result) => {

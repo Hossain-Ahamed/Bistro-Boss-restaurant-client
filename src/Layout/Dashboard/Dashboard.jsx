@@ -4,12 +4,12 @@ import ToasterProvider from '../../components/Toaster/ToasterProvider';
 import Dashboard_Common from './Dashboard_Common';
 import Dashboard_User from './Dashboard_User';
 import Dashboard_Admin from './Dashboard_Admin';
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
 
+    const { isAdmin } = useAdmin();
 
-    // TODO : load datafrom the server to have dynamic isAdmin based on data
-    const isAdmin = true;
 
     return (
         <>

@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
     // logout 
     const provideSignOut = () => {
-        setLoading(true);
+        // setLoading(true);
         return signOut(auth);
     }
 
@@ -64,20 +64,25 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             console.log('current user cred : ', currentUser);
-            setLoading(false);
+
             if (currentUser) {
                 // const user
-                axios.post(`${import.meta.env.VITE_SERVER_ADDRESS}/jwt`, { email: currentUser?.email }, {withCredentials:true})
+                axios.post(`${import.meta.env.VITE_SERVER_ADDRESS}/jwt`, { email: currentUser?.email }, { withCredentials: true })
                     .then(data => {
-                        // console.log(data.data.token);
-                        localStorage.setItem('access-token',data.data.token);
-                        Cookies.set('access-token', data.data.token, {expires : 1})
+                        console.log("Token :  ", data.data.token);
+                        localStorage.setItem('access-token', data.data.token);
+                        Cookies.set('access-token', data.data.token, { expires: 7 });
+                        setLoading(false);
                     })
                     .catch(e => { console.error(e) })
-            }else{
+
+
+            } else {
                 localStorage.removeItem('access-token');
                 Cookies.remove('access-token');
+                setLoading(false)
             }
+
         });
 
         return () => {
@@ -104,7 +109,8 @@ const AuthProvider = ({ children }) => {
 
     if (loading) {
         return <>
-            <p>loading</p></>
+            <p>loading</p>
+        </>
     }
     return (
         <AuthContext.Provider value={authInfo}>

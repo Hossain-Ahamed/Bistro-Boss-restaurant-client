@@ -1,20 +1,22 @@
 
 import { useQuery } from '@tanstack/react-query';
 import useAuth from "./useAuth";
-import axios from 'axios';
+
+import useAxiosSecure from './useAxiosSecure';
 import Cookies from 'js-cookie';
 const useCart = () => {
-    const { user } = useAuth();
+    const { user,loading } = useAuth();
+    const {axiosSecure} = useAxiosSecure();
+   
+
     const { refetch: refetchCartToUpdateCart, isLoading, data: cart = [] } = useQuery({
-        queryKey: ['carts', user?.email],
-
+        queryKey: ['carts', user?.email,axiosSecure],
+        enabled: !loading,
         queryFn: async () => {
-            //     const response = await axios.get(`${import.meta.env.VITE_SERVER_ADDRESS}/carts?email=${user?.email}`,{headers: {'Authorization' : `Bearer ${Cookies.get('access-token')}`}});
-
-            //    return response.json();
-            const response = await axios.get(`${import.meta.env.VITE_SERVER_ADDRESS}/carts?email=${user?.email}`, { headers: { 'Authorization': `Bearer ${Cookies.get('access-token')}` } ,withCredentials: true});
-
-            return response.data;
+           
+            const res = await axiosSecure.get(`/carts?email=${user?.email}`);
+            // console.log('res from axios', res.data)
+            return res.data;
         },
     })
 
@@ -24,6 +26,3 @@ const useCart = () => {
 }
 export default useCart;
 
-// const response = await axios.get(`${import.meta.env.VITE_SERVER_ADDRESS}/carts?email=${user?.email}`,{ withCredentials: true,headers: {'Authorization' : `Bearer ${Cookies.get('access-token')}`}});
-
-// return response.data;

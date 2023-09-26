@@ -4,11 +4,14 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import Cookies from 'js-cookie';
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+
+    const {axiosSecure} = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users']
         , async () => {
-            const res = await axios.get(`${import.meta.env.VITE_SERVER_ADDRESS}/users`, { headers: { 'Authorization': `Bearer ${Cookies.get('access-token')}` } ,withCredentials: true});
+            const res = await axiosSecure.get(`/users`);
             return res.data?.users;
         })
 
@@ -22,7 +25,7 @@ const AllUsers = () => {
               })
               return;
         }
-        axios.patch(`${import.meta.env.VITE_SERVER_ADDRESS}/users/admin/${_id}`)
+        axiosSecure.patch(`/users/admin/${_id}`)
             .then(data => {
                 if (data.data.modifiedCount > 0) {
                     Swal.fire(

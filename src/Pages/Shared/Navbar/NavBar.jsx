@@ -20,12 +20,14 @@ const NavBar = () => {
     <li><Link to='/order'>Order Food</Link></li>
     <li>
       <Link to='dashboard/my-cart'>
-        <button className="btn bg-transparent border-0 outline-none ring-0 hover:bg-transparent">
-          <PiShoppingCartFill className='text-xl' />
-          <div className="badge">{cart?.length && cart.length || 0}</div>
-        </button>
+        <span className=" bg-transparent border-0 outline-none ring-0 hover:bg-transparent ">
+         Your Cart
+          
+          <div className="badge ">{cart?.length && cart.length || 0}</div>
+        </span>
       </Link>
     </li>
+    <li><Link to='/dashboard'>Dashboard</Link></li>
 
     {
       user ?

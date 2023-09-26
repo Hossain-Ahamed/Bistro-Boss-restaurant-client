@@ -20,7 +20,7 @@ const SignUp = () => {
     } = useForm();
     const navigate = useNavigate();
 
-    const { provideCreateUserWithEmailAndPassword, providerUpdateuserProfile,setLoading } = useContext(AuthContext);
+    const { provideCreateUserWithEmailAndPassword, providerUpdateuserProfile, setLoading } = useContext(AuthContext);
 
 
 
@@ -54,8 +54,10 @@ const SignUp = () => {
                             })
                             .catch(e => console.error(e))
                     }).catch(e => console.error(e))
-                    .finally(()=>{setLoading(false)})
+                   
             })
+            .catch(e => console.error(e))
+           
     }
 
 

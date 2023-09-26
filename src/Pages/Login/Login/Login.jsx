@@ -29,10 +29,10 @@ const Login = () => {
 
 
         const captchaValue = captchaRef.current.value;
-        if (!validateCaptcha(captchaValue)) {
-            alert('Captcha doesnt Matched');
-            return;
-        }
+        // if (!validateCaptcha(captchaValue)) {
+        //     alert('Captcha doesnt Matched');
+        //     return;
+        // }
 
         if (!email || !password) {
             alert('Provide Info');
@@ -51,7 +51,7 @@ const Login = () => {
                 })
                 navigate(from,{replace:true});
             }).catch(e=>{})
-            .finally(()=>{setLoading(false)})
+            
     }
 
 
