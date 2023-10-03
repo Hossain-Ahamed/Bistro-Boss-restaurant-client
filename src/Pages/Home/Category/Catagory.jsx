@@ -54,6 +54,9 @@ const Catagory = () => {
                 slidesPerView={4}
                 spaceBetween={5}
                 freeMode={true}
+                loop={true}
+                autoplay={true}
+                
                 pagination={{
                     clickable: true,
                 }}

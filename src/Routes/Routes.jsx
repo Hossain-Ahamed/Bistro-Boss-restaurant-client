@@ -7,10 +7,13 @@ import Login from "../Pages/Login/Login/Login";
 import SignUp from "../Pages/Login/SignUp/SignUp";
 import PreventLogin from "../RouteBlocker/PreventLogin/PreventLogin";
 import PrivateRoute from "../RouteBlocker/PrivateRoute/PrivateRoute";
-import Profile from "../Pages/UserFunctions/Profile/Profile";
-import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers/AllUsers";
+import AddItems from "../Pages/Dashboard/AdminPages/AddItems/AddItems";
+import AdminRoute from "../RouteBlocker/AdminRoute/AdminRoute";
+import ManageItems from "../Pages/Dashboard/AdminPages/ManageItems/ManageItems";
+import MyCart from "../Pages/Dashboard/UserPages/MyCart/MyCart";
+import UserHome from "../Pages/Dashboard/UserPages/UserHome/UserHome";
 
 export const router = createBrowserRouter([
     {
@@ -43,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'profile',
-                element: <PrivateRoute><Profile /></PrivateRoute>
+                element: <PrivateRoute><UserHome /></PrivateRoute>
             }
         ],
 
@@ -57,8 +60,21 @@ export const router = createBrowserRouter([
                 element: <MyCart />
             },
             {
+                path: 'user-home',
+                element: <UserHome />
+            },
+            {
                 path: 'users',
-                element: <AllUsers />
+                element:  <AdminRoute><AllUsers /></AdminRoute>
+            },
+            {
+                path : 'add-items',
+                element: <AdminRoute><AddItems/></AdminRoute>
+            },
+            {
+                path : 'manage-items',
+                element: <AdminRoute><ManageItems/></AdminRoute>
+
             }
         ]
 

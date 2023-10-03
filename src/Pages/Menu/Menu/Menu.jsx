@@ -13,7 +13,7 @@ import MenuCategory from '../MenuCategory/MenuCategory';
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const Menu = () => {
-    const [menu] = useMenu();
+    const {menu} = useMenu();
 
 
     const dessert = menu.filter(item => item.category === "dessert");

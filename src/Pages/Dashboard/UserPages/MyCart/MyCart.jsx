@@ -1,11 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import useCart from '../../../hooks/useCart';
-import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import useCart from '../../../../hooks/useCart';
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
+import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 
 const MyCart = () => {
     const [cart,,refetchCartToUpdateCart] = useCart();
@@ -35,14 +35,14 @@ const MyCart = () => {
         })
     }
     return (
-        <>
+        <section className='min-h-screen bg-slate-100 p-4 sm:ml-64'>
             <Helmet>
                 <title>Bistro Boss |  Cart</title>
             </Helmet>
 
             <SectionTitle subheading="My Cart" heading="WANNA ADD MORE?" />
 
-            <section className='mt-8 py-7 px-4 bg-white max-w-5xl mx-auto'>
+            <div className='mt-8 py-7 px-4 bg-white max-w-5xl mx-auto '>
                 <div className='grid grid-cols-5 text-xl  justify-center items-center '>
                     <div className='col-span-2 font-bold'>
                         <p >Total Orders: {cart.length} </p>
@@ -118,9 +118,9 @@ const MyCart = () => {
                 </div>
 
 
-            </section>
+            </div>
             <ScrollToTop/>
-        </>
+        </section>
     );
 };
 

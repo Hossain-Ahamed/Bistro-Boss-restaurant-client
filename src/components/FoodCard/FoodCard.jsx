@@ -66,7 +66,7 @@ const FoodCard = ({ item }) => {
 
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow relative">
             <Link href="#">
-                <img className="rounded-t-lg w-full" src={image} alt={name} />
+                <img className="rounded-t-lg w-full max-h-40 object-contain" src={image} alt={name} />
             </Link>
             <p className="mb-3 font-medium leading-6 text-white bg-[#111827] absolute top-0 right-0 mr-4 mt-4 px-5 py-2 ">${price}</p>
             <div className="p-5">

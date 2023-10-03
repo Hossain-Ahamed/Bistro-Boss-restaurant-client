@@ -1,26 +1,20 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import useAxiosSecure from "./useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 const useMenu = () => {
-    const [menu, setMenu] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
     const {axiosSecure} = useAxiosSecure();
-    useEffect(() => {
 
-        axiosSecure.get(`/menu`)
-        .then(data => {
-            setMenu(data.data);
-        }).catch(e => {
-            setError(e);
-        }).finally(() => {
-            setLoading(false);
-        })
+    const {data :menu =[] ,isLoading : loading, error  ,refetch } = useQuery({
+        queryKey : ['menu'],
+        queryFn : async ()=>{
+            const res = await axiosSecure.get(`/menu`);
+            return res.data;
+        }
+    })
 
-    }, [axiosSecure])
-
-    return [menu, loading, error];
+    return {menu, loading, error,refetch};
 }
 
 export default useMenu;

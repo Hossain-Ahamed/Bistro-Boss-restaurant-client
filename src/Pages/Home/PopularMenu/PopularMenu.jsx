@@ -7,7 +7,7 @@ import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const PopularMenu = () => {
 
-    const [menu, loading] = useMenu();
+    const {menu, loading} = useMenu();
 
     const popular = menu.filter(i => i?.category === 'popular');
     return (
