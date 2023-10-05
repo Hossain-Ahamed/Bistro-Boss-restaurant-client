@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const [cart,,refetchCartToUpdateCart] = useCart();
@@ -48,11 +49,11 @@ const MyCart = () => {
                         <p >Total Orders: {cart.length} </p>
                     </div>
                     <div className='col-span-2 font-bold'>
-                        <p>Total Price:${total} </p>
+                        <p>Total Price:${total.toFixed(2)} </p>
                     </div>
                     <div className='col-span-1 flex justify-center'>
 
-                        <button className='uppercase font-medium text-base text-white max-w-fit bg-[#D1A054] border-0 p-2 rounded'>Pay</button>
+                        <Link to="/dashboard/payment" className='uppercase font-medium text-base text-white max-w-fit bg-[#D1A054] border-0 p-2 rounded'>Pay</Link>
                     </div>
                 </div>
 

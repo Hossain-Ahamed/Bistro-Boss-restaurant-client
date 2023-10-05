@@ -14,7 +14,7 @@ const Banner = () => {
 
     return (
         <div className='max-h-'>
-            <Carousel  showArrows={true} autoPlay={true}  infiniteLoop={true} interval={3000} stopOnHover={false}>
+            <Carousel  showArrows={true} autoPlay={true}  infiniteLoop={true}  interval={3000} stopOnHover={false}>
 
                 {
                     images.map((img, _idx) => (

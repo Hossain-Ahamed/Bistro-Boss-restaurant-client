@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import { PiShoppingCartFill } from 'react-icons/pi'
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const NavBar = () => {
 
   const { user, provideSignOut } = useAuth();
   const [cart] = useCart();
+  const {isAdmin} = useAdmin();
 
   const logout = () => {
     provideSignOut()
@@ -27,7 +29,12 @@ const NavBar = () => {
         </span>
       </Link>
     </li>
-    <li><Link to='/dashboard'>Dashboard</Link></li>
+    {
+      isAdmin ?
+      <li><Link to='/dashboard/admin-home'>Dashboard</Link></li>
+      :
+      <li><Link to='/dashboard/user-home'>Dashboard</Link></li>
+    }
 
     {
       user ?

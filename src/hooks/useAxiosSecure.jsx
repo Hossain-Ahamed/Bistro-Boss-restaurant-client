@@ -4,13 +4,13 @@ import Cookies from 'js-cookie';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+const axiosSecure = axios.create({
+    baseURL: `${import.meta.env.VITE_SERVER_ADDRESS}`,
+})
 const useAxiosSecure = () => {
     const { provideSignOut } = useAuth();
     const navigate = useNavigate();
-    const axiosSecure = axios.create({
-        baseURL: `${import.meta.env.VITE_SERVER_ADDRESS}`,
-    })
+
 
     useEffect(() => {
 
@@ -19,7 +19,7 @@ const useAxiosSecure = () => {
             const token = Cookies.get('access-token');
 
             if (token) {
-                
+
                 config.headers.Authorization = `Bearer ${token}`
             }
             config.withCredentials = true
@@ -36,7 +36,7 @@ const useAxiosSecure = () => {
                 return Promise.reject(error);
             }
         );
-    }, [provideSignOut, navigate,axiosSecure]);
+    }, [provideSignOut, navigate]);
     return { axiosSecure };
 };
 
