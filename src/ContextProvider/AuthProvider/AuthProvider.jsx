@@ -3,11 +3,12 @@ import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWith
 import { app } from '../../Firebase/firebase.config';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import AuthLoading from '../../Pages/Shared/AuthLoading/AuthLoading';
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-  
+
     const googleAuthprovider = new GoogleAuthProvider();
     const facebookAuthProvider = new FacebookAuthProvider();
     const githubAuthProvider = new GithubAuthProvider();
@@ -88,7 +89,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unSubscribe()
         };
-    }, [auth])
+    }, [])
 
 
 
@@ -109,7 +110,7 @@ const AuthProvider = ({ children }) => {
 
     if (loading) {
         return <>
-            <p>loading</p>
+            <AuthLoading />
         </>
     }
     return (

@@ -16,6 +16,8 @@ import MyCart from "../Pages/Dashboard/UserPages/MyCart/MyCart";
 import UserHome from "../Pages/Dashboard/UserPages/UserHome/UserHome";
 import Payment from "../Pages/Dashboard/UserPages/Payment/Payment";
 import AdminHome from "../Pages/Dashboard/AdminPages/AdminHome/AdminHome";
+import Error from "../Pages/Shared/Error/Error";
+import MyReservation from "../Pages/Dashboard/UserPages/MyReservation/MyReservation";
 
 export const router = createBrowserRouter([
     {
@@ -69,6 +71,10 @@ export const router = createBrowserRouter([
                 path: 'payment',
                 element: <Payment />
             },
+            {
+                path: 'reservation',
+                element: <MyReservation />
+            },
 
             // admin 
             {
@@ -90,5 +96,10 @@ export const router = createBrowserRouter([
             }
         ]
 
+    }
+    ,
+    {
+        path : "*",
+        element : <Error/>
     }
 ])

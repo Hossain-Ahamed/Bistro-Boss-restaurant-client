@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import useMenu from '../../../../hooks/useMenu';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import Error from '../../../Shared/Error/Error';
 
 const ManageItems = () => {
 
@@ -37,7 +38,7 @@ const ManageItems = () => {
                             'Deleted successfully!',
                             'success')
                     }
-                }).catch(e=>console.error(e));
+                }).catch(e=> <Error message={(e?.response?.status + e?.code) } />);
 
                 
               //

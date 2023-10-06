@@ -128,11 +128,6 @@ const CheckOutForm = ({ price, cart }) => {
                     itemsName: cart.map(i => { return {  name: i?.name, price: i?.price } }),
                     date: new Date().toISOString(),
                     status: 'pending'
-
-
-
-
-
                 }
 
                 axiosSecure.post('/payments', data)

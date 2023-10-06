@@ -17,7 +17,7 @@ const Dashboard_Common = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/menu' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
+                            <NavLink to='/menu' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3 7H21" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
                                     <path d="M3 12H21" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" />
@@ -29,7 +29,7 @@ const Dashboard_Common = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='/dashboard/shop' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
+                            <NavLink to='/order' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.40002 6.5H15.6C19 6.5 19.34 8.09 19.57 10.03L20.47 17.53C20.76 19.99 20 22 16.5 22H7.51003C4.00003 22 3.24002 19.99 3.54002 17.53L4.44003 10.03C4.66003 8.09 5.00002 6.5 8.40002 6.5Z" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M8 8V4.5C8 3 9 2 10.5 2H13.5C15 2 16 3 16 4.5V8" stroke="#292D32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

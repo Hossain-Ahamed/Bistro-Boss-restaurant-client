@@ -10,7 +10,7 @@ const useAdmin = () => {
 
     const { refetch: refetchIsAdmin, isLoading:isAdminLoading, data :isAdmin} = useQuery({
         queryKey: ['Admin', user?.email],
-        enabled: !loading,
+        enabled: (!loading && !!user),
         queryFn: async () => {
             const res = await axiosSecure.get(`/users/admin/${user?.email}`);
             console.log('Role-axios : ', user?.email, res.data , ) 

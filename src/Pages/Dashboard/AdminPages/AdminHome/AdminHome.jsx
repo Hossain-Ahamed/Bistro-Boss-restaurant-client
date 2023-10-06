@@ -4,6 +4,8 @@ import ScrollToTop from '../../../../components/ScrollToTop/ScrollToTop';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import LoadingPage from '../../../Shared/LoadingPage/LoadingPage';
+import Error from '../../../Shared/Error/Error';
 
 const AdminHome = () => {
     const { user, loading } = useAuth();
@@ -19,11 +21,12 @@ const AdminHome = () => {
     })
 
     if (isLoading) {
-        return <>Loading...</>
+        return <LoadingPage/>
     }
     if (error) {
-        console.log(error)
-        return <></>
+        console.log(error);
+
+        return <Error message={(error?.response?.status + error?.code) } />
     }
     return (
         <section className='min-h-screen bg-slate-100 p-4 sm:ml-64'>
