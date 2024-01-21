@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a client-side implementation for an e-restaurant named "Bistro Boss Restaurant by Zombie." Users can reserve tables, make online payments, and place food orders through the online platform.
+This project is a client-side implementation for an e-restaurant named "Bistro Boss Restaurant" Users can reserve tables, make online payments, and place food orders through the online platform.
 
 ## Firebase Deployment
 
